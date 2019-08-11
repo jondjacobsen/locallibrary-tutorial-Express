@@ -39,9 +39,5 @@ We now have to call "npm run <scriptname>" rather than just npm start, because "
 > The route defines a callback that will be invoked whenever an HTTP GET request with the correct pattern is detected. The matching pattern is the route specified when the module is imported ('/users') plus whatever is defined in this file ('/'). In other words, this route will be used when an URL of /users/ is received.
 ___
 #### Views 
-> The views (templates) are stored in the **/views** directory (as specified in **app.js**) and are given the file extension .pug. The method 
->'''javascript 
-> Response.render()
->''' 
->is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. In the code below from /routes/index.js you can see how that route renders a response using the template "index" passing the template variable "title".
+> The views (templates) are stored in the **/views** directory (as specified in **app.js**) and are given the file extension .pug. The method <this_is inline="xml"></this_is> is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. In the code below from /routes/index.js you can see how that route renders a response using the template "index" passing the template variable "title".
 >[Current position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website#Views_(templates))
