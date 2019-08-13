@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/* GET user detail. */
+router.get('/users/detail', function(req, res, next) {
+    res.send('This is the detail page for the user');
+});
+
 module.exports = router;
