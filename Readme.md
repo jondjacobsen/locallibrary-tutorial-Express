@@ -48,13 +48,13 @@ router.get('/', function(req, res, next) {
 });
 ```
 ---
-###Express Tutorial Part 3: Using a Database (with Mongoose)
+### Express Tutorial Part 3: Using a Database (with Mongoose)
 ---
 
 This article briefly introduces databases, and how to use them with Node/Express apps. It then goes on to show how we can use Mongoose to provide database access for the LocalLibrary website. It explains how object schema and models are declared, the main field types, and basic validation. It also briefly shows a few of the main ways in which you can access model data.
 
 ---
-####Overview
+#### Overview
 
 Library staff will use the Local Library website to store information about books and borrowers, while library members will use it to browse and search for books, find out whether there are any copies available, and then reserve or borrow them. In order to store and retrieve information efficiently, we will store it in a database.
 
