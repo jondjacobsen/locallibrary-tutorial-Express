@@ -20,26 +20,35 @@
 ---
 ## Express Tutorial Part 2: Creating a skeleton website
 ---
-> This second article in our Express Tutorial shows how you can create a "skeleton" website project which you can then go on to populate with site-specific routes, templates/views, and database calls.
+This second article in our Express Tutorial shows how you can create a "skeleton" website project which you can then go on to populate with site-specific routes, templates/views, and database calls.
 
 #### What view engine should I use?
-> For this project, we'll use the Pug templating engine (this is the recently-renamed Jade engine), as this is one of the most popular Express/JavaScript templating languages and is supported out of the box by the generator.
-#### What CSS stylesheet engine should I use?
-> As with templating engines, you should use the stylesheet engine that will allow your team to be most productive. For this project, we'll use the ordinary CSS (the default) as our CSS requirements are not sufficiently complicated to justify using anything else.
-#### What database should I use?
-> The generated code doesn't use/include any databases. Express apps can use any database mechanism supported by Node (Express itself doesn't define any specific additional behavior/requirements for database management).
-> We'll discuss how to integrate with a database in a later article.
 
-> * Note: Now if you edit any file in the project the server will restart (or you can restart it by typing rs on the command prompt at any time). You will still need to reload the browser to refresh the page.
+For this project, we'll use the Pug templating engine (this is the recently-renamed Jade engine), as this is one of the most popular Express/JavaScript templating languages and is supported out of the box by the generator.
+
+#### What CSS stylesheet engine should I use?
+
+As with templating engines, you should use the stylesheet engine that will allow your team to be most productive. For this project, we'll use the ordinary CSS (the default) as our CSS requirements are not sufficiently complicated to justify using anything else.
+
+#### What database should I use?
+
+The generated code doesn't use/include any databases. Express apps can use any database mechanism supported by Node (Express itself doesn't define any specific additional behavior/requirements for database management).
+
+We'll discuss how to integrate with a database in a later article.
+
+* Note: Now if you edit any file in the project the server will restart (or you can restart it by typing rs on the command prompt at any time). You will still need to reload the browser to refresh the page.
 We now have to call "npm run <scriptname>" rather than just npm start, because "start" is actually an NPM command that is mapped to the named script. We could have replaced the command in the start script but we only want to use nodemon during development, so it makes sense to create a new script command.
-> * #### Terminal Command - DEBUG MODE: npm devstart
+
+* #### Terminal Command - DEBUG MODE: npm devstart
 ---
 #### Routes
 
-> The route defines a callback that will be invoked whenever an HTTP GET request with the correct pattern is detected. The matching pattern is the route specified when the module is imported ('/users') plus whatever is defined in this file ('/'). In other words, this route will be used when an URL of /users/ is received.
+The route defines a callback that will be invoked whenever an HTTP GET request with the correct pattern is detected. The matching pattern is the route specified when the module is imported ('/users') plus whatever is defined in this file ('/'). In other words, this route will be used when an URL of /users/ is received.
 ___
 #### Views 
-> The views (templates) are stored in the **/views** directory (as specified in **app.js**) and are given the file extension .pug. The method **Render.render()** is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. In the code below from /routes/index.js you can see how that route renders a response using the template "index" passing the template variable "title".
+
+The views (templates) are stored in the **/views** directory (as specified in **app.js**) and are given the file extension .pug. The method **Render.render()** is used to render a specified template along with the values of named variables passed in an object, and then send the result as a response. In the code below from /routes/index.js you can see how that route renders a response using the template "index" passing the template variable "title".
+
 ---
 ```javascript
 /* GET home page. */
