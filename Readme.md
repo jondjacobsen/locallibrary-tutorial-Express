@@ -90,7 +90,19 @@ A few solutions that were popular at the time of writing are:
 
 * [JugglingDB](http://1602.github.io/jugglingdb) is cross-DB ORM for NodeJS, providing a common interface to access most popular database formats. Currently supporting MySQL, SQLite3, Postgres, MongoDB, Redis and js-memory-storage (self-written engine for test-usage only).
 
->[Current position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/skeleton_website#Views_(templates))
+As a general rule, you should consider both the features provided and the "community activity" (downloads, contributions, bug reports, quality of documentation, etc.) when selecting a solution. At the time of writing Mongoose is by far the most popular ODM, and is a reasonable choice if you're using MongoDB for your database.
+
+---
+
+####Using Mongoose and MongoDb for the LocalLibrary
+
+
+![alt text][logo]
+
+[logo]: https://xebialabs.com/wp-content/uploads/files/tool-chest/mongodb.jpg
+
+---
+[Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Using_Mongoose_and_MongoDb_for_the_LocalLibrary)
 
 
 ---
