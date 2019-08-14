@@ -96,4 +96,4 @@ A few solutions that were popular at the time of writing are:
 ---
 #### INDEX
 
-[Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#emphasis) This is intended as a quick reference and showcase. For more complete info, see [John Gruber's original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
+[**Markdown Cheatsheet**: ](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#emphasis) This is intended as a quick reference and showcase. For more complete info, see [John Gruber's original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
