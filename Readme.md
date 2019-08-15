@@ -94,7 +94,7 @@ As a general rule, you should consider both the features provided and the "commu
 
 ---
 
-#### Using Mongoose and MongoDb for the LocalLibrary
+### Using Mongoose and MongoDb for the LocalLibrary
 
 
 ![alt text][logo]
