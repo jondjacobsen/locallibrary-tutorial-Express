@@ -99,7 +99,7 @@ As a general rule, you should consider both the features provided and the "commu
 
 ![alt text][logo]
 
-[logo]: https://xebialabs.com/wp-content/uploads/files/tool-chest/mongodb.jpg
+[logo]: https://cms-assets.tutsplus.com/uploads/users/34/posts/29527/preview_image/mongoose.jpg
 
 * [Mongoose ODM](https://www.npmjs.com/package/mongoose) - to access our library data. Mongoose acts as a front end to MongoDB, an open source NoSQL database that uses a document-oriented data model. A “collection” of “documents”, in a MongoDB database, is analogous to a “table” of “rows” in a relational database.
 ---
