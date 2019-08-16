@@ -103,7 +103,53 @@ As a general rule, you should consider both the features provided and the "commu
 
 * [Mongoose ODM](https://www.npmjs.com/package/mongoose) - to access our library data. Mongoose acts as a front end to MongoDB, an open source NoSQL database that uses a document-oriented data model. A “collection” of “documents”, in a MongoDB database, is analogous to a “table” of “rows” in a relational database.
 ---
-#### Designing the LocalLibrary models
+### Designing the LocalLibrary models
+![alt_text][database]
+
+[database]: https://mdn.mozillademos.org/files/15645/Library%20Website%20-%20Mongoose_Express.png
+
+---
+
+### Mongoose Primer
+
+#### Defining and creating models
+
+Models are defined using the Schema interface. The Schema allows you to define the fields stored in each document along with their validation requirements and default values. In addition, you can define static and instance helper methods to make it easier to work with your data types, and also virtual properties that you can use like any other field, but which aren't actually stored in the database (we'll discuss a bit further below).
+This section provides an overview of how to connect Mongoose to a MongoDB database, how to define a schema and a model, and how to make basic queries. 
+
+#### Defining Schemas
+
+```javascript
+//Require Mongoose
+var mongoose = require('mongoose');
+
+//Define a schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+  a_string: String,
+  a_date: Date
+});
+```
+In the case above we just have two fields, a string and a date. In the next sections, we will show some of the other field types, validation, and other methods.
+
+#### Creating a model
+
+Models are created from schemas using the mongoose.model() method:
+
+```javascript
+// Define schema
+var Schema = mongoose.Schema;
+
+var SomeModelSchema = new Schema({
+  a_string: String,
+  a_date: Date
+});
+
+// Compile model from schema
+var SomeModel = mongoose.model('SomeModel', SomeModelSchema );
+```
+
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Designing_the_LocalLibrary_models)
 
 
