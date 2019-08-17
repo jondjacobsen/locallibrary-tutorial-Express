@@ -217,7 +217,21 @@ var breakfastSchema = new Schema({
 });
 ```
 
+#### Virtual properties
+
+Virtual properties are document properties that you can get and set but that do not get persisted to MongoDB. The getters are useful for formatting or combining fields, while setters are useful for de-composing a single value into multiple values for storage. The example in the documentation constructs (and deconstructs) a full name virtual property from a first and last name field, which is easier and cleaner than constructing a full name every time one is used in a template.
 For complete information on field validation see [Validation](http://mongoosejs.com/docs/validation.html) (Mongoose docs).
+
+For more information see [Virtuals](http://mongoosejs.com/docs/guide.html#virtuals) (Mongoose documentation).
+
+#### Methods and query helpers
+
+A schema can also have instance methods, static methods, and query helpers. The instance and static methods are similar, but with the obvious difference that an instance method is associated with a particular record and has access to the current object. Query helpers allow you to extend mongoose's [chainable query builder API](http://mongoosejs.com/docs/queries.html) (for example, allowing you to add a query "byName" in addition to the find(), findOne() and findById() methods).
+
+---
+
+### Using Models
+
 
 
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Designing_the_LocalLibrary_models)
