@@ -169,6 +169,55 @@ var schema = new Schema(
   nested: { stuff: { type: String, lowercase: true, trim: true } }
 })
 ```
+Most of the SchemaTypes (the descriptors after “type:” or after field names) are self-explanatory. The exceptions are:
+
+* ObjectId: Represents specific instances of a model in the database. For example, a book might use this to represent its author object. This will actually contain the unique ID (_id) for the specified object. We can use the populate() method to pull in the associated information when needed.
+* Mixed: An arbitrary schema type.
+* []: An array of items. You can perform JavaScript array operations on these models (push, pop, unshift, etc.). The examples above show an array of objects without a specified type and an array of String objects, but you can have an array of any type of object.
+
+The code also shows both ways of declaring a field:
+
+* Field name and type as a key-value pair (i.e. as done with fields name, binary and living).
+* Field name followed by an object defining the type, and any other options for the field. Options include things like:
+    * default values.
+    * built-in validators (e.g. max/min values) and custom validation functions.
+    * Whether the field is required
+    * Whether String fields should automatically be set to lowercase, uppercase, or trimmed (e.g. { type: String, lowercase: true, trim: true })
+
+For more information about options see [SchemaTypes](http://mongoosejs.com/docs/schematypes.html) (Mongoose docs).
+
+#### Validation
+
+Mongoose provides built-in and custom validators, and synchronous and asynchronous validators. It allows you to specify both the acceptable range or values and the error message for validation failure in all cases.
+
+The built-in validators include:
+
+
+* All SchemaTypes have the built-in required validator. This is used to specify whether the field must be supplied in order to save a document.
+* Numbers have min and max validators.
+* Strings have:
+    * enum: specifies the set of allowed values for the field.
+    * match: specifies a regular expression that the string must match.
+    * maxlength and minlength for the string.
+
+The example below (slightly modified from the Mongoose documents) shows how you can specify some of the validator types and error messages:
+
+```javascript
+var breakfastSchema = new Schema({
+  eggs: {
+    type: Number,
+    min: [6, 'Too few eggs'],
+    max: 12,
+    required: [true, 'Why no eggs?']
+  },
+  drink: {
+    type: String,
+    enum: ['Coffee', 'Tea', 'Water',]
+  }
+});
+```
+
+For complete information on field validation see [Validation](http://mongoosejs.com/docs/validation.html) (Mongoose docs).
 
 
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Designing_the_LocalLibrary_models)
