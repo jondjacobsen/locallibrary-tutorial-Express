@@ -255,8 +255,150 @@ Athlete.find({ 'sport': 'Tennis' }, 'name age', function (err, athletes) {
   // 'athletes' contains the list of athletes that match the criteria.
 })
 ```
+#### Searching for records
 
-[Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Designing_the_LocalLibrary_models)
+ou can search for records using query methods, specifying the query conditions as a JSON document. 
+
+```javascript
+var Athlete = mongoose.model('Athlete', yourSchema);
+
+// find all athletes who play tennis, selecting the 'name' and 'age' fields
+Athlete.find({ 'sport': 'Tennis' }, 'name age', function (err, athletes) {
+  if (err) return handleError(err);
+  // 'athletes' contains the list of athletes that match the criteria.
+})
+```
+
+f you don't specify a callback then the API will return a variable of type Query. You can use this query object to build up your query and then execute it (with a callback) later using the exec() method.
+```javascript
+// find all athletes that play tennis
+var query = Athlete.find({ 'sport': 'Tennis' });
+
+// selecting the 'name' and 'age' fields
+query.select('name age');
+
+// limit our results to 5 items
+query.limit(5);
+
+// sort by age
+query.sort({ age: -1 });
+
+// execute the query at a later time
+query.exec(function (err, athletes) {
+  if (err) return handleError(err);
+  // athletes contains an ordered list of 5 athletes who play Tennis
+})
+```
+
+Above we've defined the query conditions in the find() method. We can also do this using a where() function, and we can chain all the parts of our query together using the dot operator (.) rather than adding them separately. The code fragment below is the same as our query above, with an additional condition for the age.
+
+```javascript
+Athlete.
+  find().
+  where('sport').equals('Tennis').
+  where('age').gt(17).lt(50).  //Additional where query
+  limit(5).
+  sort({ age: -1 }).
+  select('name age').
+  exec(callback); // where callback is the name of our callback function.
+```
+---
+The [find()](http://mongoosejs.com/docs/api.html#query_Query-find) method gets all matching records, but often you just want to get one match. The following methods query for a single record:
+
+* [findById()](http://mongoosejs.com/docs/api.html#model_Model.findById): Finds the document with the specified id (every document has a unique id).
+* [findOne()](http://mongoosejs.com/docs/api.html#query_Query-findOne): Finds a single document that matches the specified criteria.
+* [findByIdAndRemove()](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove), findByIdAndUpdate(), findOneAndRemove(), findOneAndUpdate(): Finds a single document by id or criteria and either update or remove it. These are useful convenience functions for updating and removing records.
+---
+
+
+
+    Note: There is also a count() method that you can use to get the 
+    number of items that match conditions. This is useful if you want 
+    to perform a count without actually fetching the records.
+
+#### Working with related documents — population
+
+You can create references from one document/model instance to another using the ObjectId schema field, or from one document to many using an array of ObjectIds. The field stores the id of the related model. If you need the actual content of the associated document, you can use the populate() method in a query to replace the id with the actual data.
+
+For example, the following schema defines authors and stories. Each author can have multiple stories, which we represent as an array of ObjectId. Each story can have a single author. The "ref" (highlighted in bold below) tells the schema which model can be assigned to this field.
+
+```javascript
+var mongoose = require('mongoose')
+  , Schema = mongoose.Schema
+
+var authorSchema = Schema({
+  name    : String,
+  stories : [{ type: Schema.Types.ObjectId, ref: 'Story' }]
+});
+
+var storySchema = Schema({
+  author : { type: Schema.Types.ObjectId, ref: 'Author' },
+  title    : String
+});
+
+var Story  = mongoose.model('Story', storySchema);
+var Author = mongoose.model('Author', authorSchema);
+```
+
+We can save our references to the related document by assigning the _id value. Below we create an author, then a story, and assign the author id to our story's author field.
+
+```javascript
+var bob = new Author({ name: 'Bob Smith' });
+
+bob.save(function (err) {
+  if (err) return handleError(err);
+
+  //Bob now exists, so lets create a story
+  var story = new Story({
+    title: "Bob goes sledding",
+    author: bob._id    // assign the _id from the our author Bob. This ID is created by default!
+  });
+
+  story.save(function (err) {
+    if (err) return handleError(err);
+    // Bob now has his story
+  });
+});
+```
+
+Our story document now has an author referenced by the author document's ID. In order to get the author information in the story results we use populate(), as shown below.
+
+```javascript
+Story
+.findOne({ title: 'Bob goes sledding' })
+.populate('author') //This populates the author id with actual author information!
+.exec(function (err, story) {
+  if (err) return handleError(err);
+  console.log('The author is %s', story.author.name);
+  // prints "The author is Bob Smith"
+});
+```
+    Note: Astute readers will have noted that we added an author to our story, 
+    but we didn't do anything to add our story to our author's stories array. 
+    How then can we get all stories by a particular author? One way would be to 
+    add our story to the stories array, but this would result in us having two 
+    places where the information relating authors and stories needs to be 
+    maintained.
+
+    A better way is to get the _id of our author, then use find() to search for this in the author field across all stories.
+
+```javascript
+Story
+.find({ author : bob._id })
+.exec(function (err, stories) {
+  if (err) return handleError(err);
+  // returns all stories that have Bob's id as their author.
+});
+```
+For more detailed information see [Population](http://mongoosejs.com/docs/populate.html) (Mongoose docs).
+
+---
+
+### One schema/model per file
+  
+
+
+[Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#One_schemamodel_per_file)
 
 
 
