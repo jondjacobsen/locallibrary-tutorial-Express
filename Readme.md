@@ -426,6 +426,35 @@ SomeModel.find(callback_function);
 ---
 ### Setting up the MongoDB database
 
+For this tutorial, we're going to use the [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) free cloud-hosted [sandbox](https://www.mongodb.com/cloud/atlas/pricing) database. This database tier is not considered suitable for production websites because it has no redundancy, but it is great for development and prototyping. 
+
+(other popular choices at the time of writing include [Compose](https://www.compose.com/), [ScaleGrid](https://scalegrid.io/pricing.html) and [ObjectRocket](https://www.mongodb.com/cloud/atlas)).
+
+---
+
+### Install Mongoose
+
+Open a command prompt and navigate to the directory where you created your skeleton Local Library website. Enter the following command to install Mongoose (and its dependencies) and add it to your package.json file, unless you have already done so when reading the Mongoose Primer above.
+
+```shell script
+npm install mongoose
+```
+---
+
+### Connect to MongoDB
+
+Open /app.js (in the root of your project) and copy the following text below where you declare the Express application object (after the line var app = express();). Replace the database url string ('insert_your_database_url_here') with the location URL representing your own database (i.e. using the information from mongoDB Atlas).
+
+```javascript
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'insert_your_database_url_here';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+```
+
+
 
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Setting_up_the_MongoDB_database)
 
