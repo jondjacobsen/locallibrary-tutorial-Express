@@ -453,8 +453,43 @@ mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 ```
+---
+
+### TESTING - create some items
+    
+In order to test the models (and to create some example books and other items that we can use in our next articles) we'll now run an independent script to create items of each type:
+
+1) Download (or otherwise create) the file [populatedb.js](https://raw.githubusercontent.com/hamishwillee/express-locallibrary-tutorial/master/populatedb.js) inside your express-locallibrary-tutorial directory (in the same level as package.json).   
+
+        You don't need to know how populatedb.js works; it just adds sample data into the database.
+
+2) Enter the following commands in the project root to install the async module that is required by the script (we'll discuss this in later tutorials, ) 
+
+```javascript
+npm install async
+```
+
+3) Run the script using node in your command prompt, passing in the URL of your MongoDB database (the same one you replaced the insert_your_database_url_here placeholder with, inside app.js earlier): Be sure to pass it as a string by wrapping it with '  ' 
+```javascript
+node populatedb '<your mongodb url>​​​​'
+```
+---
+### Summary[**](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Summary)
+
+In this article, we've learned a bit about databases and ORMs on Node/Express, and a lot about how Mongoose schema and models are defined. We then used this information to design and implement Book, BookInstance, Author and Genre models for the LocalLibrary website.
+
+Last of all we tested our models by creating a number of instances (using a standalone script). In the next article we'll look at creating some pages to display these objects.
 
 
+* [Database integration](https://expressjs.com/en/guide/database-integration.html) (Express docs)
+* [Mongoose website](http://mongoosejs.com/) (Mongoose docs)
+* [Mongoose Guide](http://mongoosejs.com/docs/guide.html) (Mongoose docs)
+* [Validation](http://mongoosejs.com/docs/validation.html) (Mongoose docs)
+* [Schema Types](http://mongoosejs.com/docs/schematypes.html) (Mongoose docs)
+* [Models](http://mongoosejs.com/docs/models.html) (Mongoose docs)
+* [Queries](http://mongoosejs.com/docs/queries.html) (Mongoose docs)
+* [Population](http://mongoosejs.com/docs/populate.html) (Mongoose docs)
+---
 
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Setting_up_the_MongoDB_database)
 
