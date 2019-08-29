@@ -491,6 +491,26 @@ Last of all we tested our models by creating a number of instances (using a stan
 * [Population](http://mongoosejs.com/docs/populate.html) (Mongoose docs)
 ---
 
+### Express Tutorial Part 4: Routes and controllers
+
+#### Overview [*](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#Overview)
+
+In the last tutorial article we defined Mongoose models to interact with the database, and used a (standalone) script to create some initial library records. We can now write the code to present that information to users. The first thing we need to do is determine what information we want to be able to display in our pages, and then define appropriate URLs for returning those resources. Then we're going to need to create the routes (URL handlers) and views (templates) to display those pages.
+
+The diagram below is provided as a reminder of the main flow of data and things that need to be implemented when handling an HTTP request/response. In addition to the views and routes the diagram shows "controllers" — functions that separate out the code to route requests from the code that actually processes requests.
+
+As we've already created the models, the main things we'll need to create are:
+
+* "Routes" to forward the supported requests (and any information encoded in request URLs) to the appropriate controller functions.
+* Controller functions to get the requested data from the models, create an HTML page displaying the data, and return it to the user to view in the browser.
+* Views (templates) used by the controllers to render the data.
+
+![alt text][routes]
+
+[routes]: https://mdn.mozillademos.org/files/14456/MVC%20Express.png
+
+---
+
 [Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Setting_up_the_MongoDB_database)
 
 
