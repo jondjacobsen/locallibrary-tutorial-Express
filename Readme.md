@@ -509,12 +509,19 @@ As we've already created the models, the main things we'll need to create are:
 
 [routes]: https://mdn.mozillademos.org/files/14456/MVC%20Express.png
 
+Ultimately we might have pages to show lists and detail information for books, genres, authors and bookinstances, along with pages to create, update, and delete records. That's a lot to document in one article. Therefore most of this article will concentrate on setting up our routes and controllers to return "dummy" content. We'll extend the controller methods in our subsequent articles to work with model data.
+
+The first section below provides a brief "primer" on how to use the [Express Router](http://expressjs.com/en/4x/api.html#router) middleware. We'll then use that knowledge in the following sections when we set up the LocalLibrary routes.
+
+---
+### Routes Primer [*](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#Routes_primer)
+
+
+
+
 ---
 
-[Current Position](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose#Setting_up_the_MongoDB_database)
 
-
----
 #### INDEX
 
 [**Markdown Cheatsheet**: ](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#emphasis) This is intended as a quick reference and showcase. For more complete info, see [John Gruber's original spec](http://daringfireball.net/projects/markdown/) and the [Github-flavored Markdown info page](http://github.github.com/github-flavored-markdown/).
