@@ -557,10 +557,60 @@ app.use('/wiki', wiki);
 
 The two routes defined in our wiki route module are then accessible from /wiki/ and /wiki/about/.
 
-### Route Runctions [**](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#Route_functions)
+### Route Functions [**](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#Route_functions)
+
+```javascript
+router.get('/about', function (req, res) {
+  res.send('About this wiki');
+})
+```
+The callback takes three arguments (usually named as shown: req, res, next), that will contain the HTTP Request object, HTTP response, and the next function in the middleware chain.
+
+* The callback function here calls send() on the response to return the string "About this wiki" when we receive a GET request with the path ('/about'). There are a number of other response methods for ending the request/response cycle. For example, you could call res.json() to send a JSON response or res.sendFile() to send a file. The response method that we'll be using most often as we build up the library is render(), which creates and returns HTML files using templates and data—we'll talk a lot more about that in a later article!
 
 ---
 
+### HTTP Verbs
+
+Other Verbs include:
+
+* post(), put(), delete(), options(), trace(), copy(), lock(), mkcol(), move(), purge(), propfind(), proppatch(), unlock(), report(), mkactivity(), checkout(), merge(), m-search(), notify(), subscribe(), unsubscribe(), patch(), search(), and connect().
+
+---
+
+#### Route Paths
+
+Route paths can also be string patterns. String patterns use a subset of regular expression syntax to define patterns of endpoints that will be matched. The subset is listed below (note that the hyphen (-) and the dot (.) are interpreted literally by string-based paths):
+
+    ? : The endpoint must have 0 or 1 of the preceding character. E.g. a route path of '/ab?cd' will match endpoints acd or abcd.
+    + : The endpoint must have 1 or more of the preceding character. E.g. a route path of '/ab+cd' will match endpoints abcd, abbcd, abbbcd, and so on.
+    * : The endpoint may have an arbitrary string where the * character is placed. E.g. a route path of '/ab\*cd' will match endpoints abcd, abXcd, abSOMErandomTEXTcd, and so on.
+    () : Grouping match on a set of characters to perform another operation on. E.g. '/ab(cd)?e' will peform a ? match on (cd) —it will match abe and abcde.
+
+The route paths can also be JavaScript regular expressions. For example, the route path below will match catfish and dogfish, but not catflap, catfishhead, and so on. Note that the path for a regular expression uses regular expression syntax (it is not a quoted string as in the previous cases).
+
+```javascript
+app.get(/.*fish$/, function (req, res) {
+  ...
+})
+```
+---
+
+#### Route parameters ([Link](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/routes#Route_parameters))
+
+So for example, consider a URL encoded to contain information about users and books: http://localhost:3000/users/34/books/8989. We can extract this information as shown below, with the userId and bookId path parameters:
+
+```javascript
+app.get('/users/:userId/books/:bookId', function (req, res) {
+  // Access userId via: req.params.userId
+  // Access bookId via: req.params.bookId
+  res.send(req.params);
+})
+```
+
+
+
+---
 
 #### INDEX
 
